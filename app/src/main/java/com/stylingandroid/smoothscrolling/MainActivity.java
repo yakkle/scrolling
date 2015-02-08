@@ -17,7 +17,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setAdapter(LargeAdapter.newInstance(this));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        int duration = getResources().getInteger(R.integer.scroll_duration);
+        recyclerView.setLayoutManager(new ScrollingLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false, duration));
     }
 
     @Override
