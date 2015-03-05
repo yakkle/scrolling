@@ -108,7 +108,7 @@ public class FastScroller extends LinearLayout {
     private void setPosition(float y) {
         float position = y / height;
         int bubbleHeight = bubble.getHeight();
-        bubble.setY(getValueInRage(0, height - bubbleHeight, (int)((height - bubbleHeight) * position)));
+        bubble.setY(getValueInRage(0, height - bubbleHeight, (int) ((height - bubbleHeight) * position)));
         int handleHeight = handle.getHeight();
         handle.setY(getValueInRage(0, height - handleHeight, (int) ((height - handleHeight) * position)));
     }
