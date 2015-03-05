@@ -19,6 +19,8 @@ public class MainActivity extends Activity {
         recyclerView.setAdapter(LargeAdapter.newInstance(this));
         int duration = getResources().getInteger(R.integer.scroll_duration);
         recyclerView.setLayoutManager(new ScrollingLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false, duration));
+        FastScroller fastScroller = (FastScroller) findViewById(R.id.fastscroller);
+        fastScroller.setRecyclerView(recyclerView);
     }
 
     @Override
