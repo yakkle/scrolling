@@ -95,12 +95,12 @@ public class FastScroller extends LinearLayout {
             } else {
                 proportion = y / (float) height;
             }
-            int targetPos = getValueInRage(0, itemCount - 1, (int) (proportion * (float) itemCount));
+            int targetPos = getValueInRange(0, itemCount - 1, (int) (proportion * (float) itemCount));
             recyclerView.scrollToPosition(targetPos);
         }
     }
 
-    private int getValueInRage(int min, int max, int value) {
+    private int getValueInRange(int min, int max, int value) {
         int minimum = Math.max(min, value);
         return Math.min(minimum, max);
     }
@@ -108,9 +108,9 @@ public class FastScroller extends LinearLayout {
     private void setPosition(float y) {
         float position = y / height;
         int bubbleHeight = bubble.getHeight();
-        bubble.setY(getValueInRage(0, height - bubbleHeight, (int) ((height - bubbleHeight) * position)));
+        bubble.setY(getValueInRange(0, height - bubbleHeight, (int) ((height - bubbleHeight) * position)));
         int handleHeight = handle.getHeight();
-        handle.setY(getValueInRage(0, height - handleHeight, (int) ((height - handleHeight) * position)));
+        handle.setY(getValueInRange(0, height - handleHeight, (int) ((height - handleHeight) * position)));
     }
 
     private void showHandle() {
