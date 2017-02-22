@@ -8,6 +8,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -96,6 +97,7 @@ public class FastScroller extends LinearLayout {
                 proportion = y / (float) height;
             }
             int targetPos = getValueInRange(0, itemCount - 1, (int) (proportion * (float) itemCount));
+            Log.e("FastScroll", "tartPos = " + targetPos);
             recyclerView.scrollToPosition(targetPos);
         }
     }

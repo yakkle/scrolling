@@ -2,14 +2,18 @@ package com.stylingandroid.smoothscrolling;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements Runnable {
 
     private RecyclerView recyclerView;
+    private Handler handler;
+    private int totalItem;
+    private int targetPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,17 @@ public class MainActivity extends Activity {
         recyclerView.setLayoutManager(new ScrollingLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false, duration));
         FastScroller fastScroller = (FastScroller) findViewById(R.id.fastscroller);
         fastScroller.setRecyclerView(recyclerView);
+
+        handler = new Handler();
+    }
+
+    @Override
+    public void run() {
+        targetPos = targetPos - 80;
+        recyclerView.scrollToPosition(targetPos);
+        if (targetPos > 0) {
+            handler.postDelayed(this, 5);
+        }
     }
 
     @Override
@@ -34,7 +49,9 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         if (id == R.id.action_top) {
-            recyclerView.smoothScrollToPosition(0);
+            totalItem = recyclerView.getAdapter().getItemCount();
+            targetPos = totalItem;
+            handler.postDelayed(this, 50);
             return true;
         } else if (id == R.id.action_bottom) {
             recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
